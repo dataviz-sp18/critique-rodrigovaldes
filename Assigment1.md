@@ -28,32 +28,46 @@ library(ggpubr)
 Critique
 ========
 
+The source of the image is <http://flowingdata.com/2018/04/09/datasets-for-teaching-data-science/>
+
+``` r
+setwd("/Users/ruy/Documents/UChicago/spring2018/data_viz/")
+```
+
+![](critique_gap_minder.png)
+
 Is it truthful?
 ---------------
 
-The graph gives the idea that, in general, life expectancy has increased in the last 50 years. Also, the fertility rate has decreased in the last 50 years. However, it might imply causality to certain people. For instance, does fertility rate affect life expectancy? Which is the direction of the causality (if it exists)?
+One issue with the graph is that the sources are not in the graph. Then, an advaced reader can not assess by hersefl she want to belive the graph as a whole. A second issue with the graph is that it might imply causality to certain people. For instance, does fertility rate affect life expectancy? Which is the direction of the causality (if it exists)? Despite that, an educated eye will not think about causality.
 
-Despite that, an educated eye will not think about causality.
+Overall, the graph is truthful because it gives a meesage to the audience, and it depict the general trend of the data: life expectancy has increased and bith rate has decreased in the last years.
 
 Is it functional?
 -----------------
 
-Yes. It shows the positive trends in the evolutions of human societies.
+Yes. It shows the positive trends in the evolutions of human societies. However, I am assuming that that is the message that the author want to give.
+
+I believe that the size of the legeds can be bigger to increase the readability. In specific, the part where the author define the meaning of the colors can be bigger. Everything else, such as different color for different regions, big size of the text about the years, and the labeling of the aces work very well.
 
 Is it beautiful?
 ----------------
 
 The graph is not very beautiful. However, it is not ugly. I would have preferred not using lines on the edge of the graphs. Also, the green color might not be the best combination for the other colors. For instance, certain tones of yellow might have matched better with the other color in the graph.
 
+Overall, I recognize that the graph is eye-catching. Yet, the colors and the style of the letters can be improved. For instace, I would have used black for the year label.
+
 Is it insightful?
 -----------------
 
-Yes. However, the size of the circles may confuse the reader. If the author would like to be clearer, she could have used labels indicating the meaning of the size of the circles. For example, the size of the circles can be population, per capita GDP, education, or other indicators. Then, avoiding this information in the graph is a crucial mistake.
+Yes. The graph gives the idea that, in general, life expectancy has increased in the last 50 years. Also, the fertility rate has decreased in the last 50 years.
+
+However, the size of the circles may confuse the reader. If the author would like to be clearer, she could have used labels indicating the meaning of the size of the circles. For example, the size of the circles can be population, per capita GDP, education, or other indicators. Then, avoiding this information in the graph is a crucial mistake.
 
 Is it enlightening?
 -------------------
 
-Yes. The graph contributes to realize about trends in the data that might not be evident just looking at the raw data.
+Yes. The graph contributes to realize about trends in the data that might not be evident just looking at the raw data. However, it depicts some data that is evident for people with training in certain fields among the social sciences. Then, it is not the most enlightening graph.
 
 Own graph
 =========
@@ -91,7 +105,7 @@ ggarrange(cites_graph, change_graph,
 
     ## Warning: Removed 1 rows containing missing values (geom_path).
 
-![](Assigment1_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](Assigment1_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 Story
 -----
