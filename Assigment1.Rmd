@@ -7,24 +7,23 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+setwd("/Users/ruy/Documents/UChicago/spring2018/data_viz/")
 ```
 
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 # install.packages("cowplot")
 # install.packages("ggpubr")
 library(data.table)
 library(ggplot2)
 library(ggpubr)
+
 ```
 
 # Critique
 
 The source of the image is http://flowingdata.com/2018/04/09/datasets-for-teaching-data-science/
 
-```{r}
-setwd("/Users/ruy/Documents/UChicago/spring2018/data_viz/")
-```
 ![](critique_gap_minder.png)
 
 ## Is it truthful?

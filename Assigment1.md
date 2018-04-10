@@ -7,32 +7,14 @@ Rodrigo Valdes Ortiz
 # install.packages("cowplot")
 # install.packages("ggpubr")
 library(data.table)
-```
-
-    ## Warning: package 'data.table' was built under R version 3.3.2
-
-``` r
 library(ggplot2)
-```
-
-    ## Warning: package 'ggplot2' was built under R version 3.3.2
-
-``` r
 library(ggpubr)
 ```
-
-    ## Warning: package 'ggpubr' was built under R version 3.3.2
-
-    ## Loading required package: magrittr
 
 Critique
 ========
 
 The source of the image is <http://flowingdata.com/2018/04/09/datasets-for-teaching-data-science/>
-
-``` r
-setwd("/Users/ruy/Documents/UChicago/spring2018/data_viz/")
-```
 
 ![](critique_gap_minder.png)
 
@@ -105,7 +87,7 @@ ggarrange(cites_graph, change_graph,
 
     ## Warning: Removed 1 rows containing missing values (geom_path).
 
-![](Assigment1_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](Assigment1_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 Story
 -----
