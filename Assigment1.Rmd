@@ -10,14 +10,41 @@ knitr::opts_chunk$set(echo = TRUE)
 setwd("/Users/ruy/Documents/UChicago/spring2018/data_viz/")
 ```
 
+```{r, include=FALSE}
+# Run once to configure latex fonts
+# install.packages("extrafont")
+# library(extrafont)
 
-```{r, message=FALSE, warning=FALSE}
+# Install **TTF** Latin Modern Roman fonts from www.fontsquirrel.com/fonts/latin-modern-roman
+# Import the newly installed LModern fonts, change the pattern according to the 
+# filename of the lmodern ttf files in your fonts folder
+# font_import(pattern = "lmodern*")
+# font_import(pattern = "lmroman*")
+
+# font_import()
+```
+
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
 # install.packages("cowplot")
 # install.packages("ggpubr")
 library(data.table)
 library(ggplot2)
 library(ggpubr)
+library(extrafont)
+library(grid)
+library(gridExtra)
+```
 
+```{r echo=FALSE}
+# Main theme
+blank_theme <- theme_minimal()+
+  theme(
+  panel.border = element_blank(),
+  panel.grid=element_blank(),
+  axis.ticks = element_blank(),
+  plot.title=element_text(size=14, face="bold")
+  )
 ```
 
 # Critique
@@ -49,7 +76,6 @@ However, the size of the circles may confuse the reader. If the author would lik
 ## Is it enlightening?
 Yes. The graph contributes to realize about trends in the data that might not be evident just looking at the raw data. However, it depicts some data that is evident for people with training in certain fields among the social sciences. Then, it is not the most enlightening graph.
 
-
 # Own graph
 
 ```{r}
@@ -62,27 +88,38 @@ ArtCites$MeanArt = mean(ArtCites$change_cites, na.rm=TRUE)
 
 
 ```{r}
+options(warn = -1)
 # Generate the plot
 cites_graph = ggplot(ArtCites, aes(x=year))  + 
     geom_bar(aes(y=cites), stat="identity", fill="steelblue4", colour="steelblue4") +
-    labs(title="Evolution of Academic Citations", y = "Citations (millions)", x = " ", colour = "Variables") +
-    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2015)) +
-    theme(plot.title = element_text(hjust = 0.5))
+    # labs(title="Evolution of Academic Citations", y = "Citations (millions)", x = " ", colour = "Variables") +
+    # Delete title for thesis version, it will be in the latex.
+    labs(y = "Citations (millions)", x = " ", colour = "Variables") +
+    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2014), limits = c(1984, 2015)) +
+    blank_theme +
+    theme(plot.title = element_text(hjust = 0.5), text = element_text(size=13, family="LM Roman 10"))
 
 change_graph = ggplot(ArtCites, aes(x=year))  + 
     geom_line(aes(y=change_cites, color="indianred4")) +
     geom_line(aes(y=MeanArt, color="navyblue")) +
-    labs(y = "% Change Citations", x = "Year") +
+    # labs(y = "% Change Citations", x = "Year") +
+    # Delete year for thesis version, it is evident.
+    labs(y = "% Change Citations", x =" ") +
     scale_y_continuous(breaks=c(-2,0,2,4,6,8,10)) +
-    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2015)) +
+    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2014), limits = c(1984, 2015)) +
     scale_color_discrete(name = "Change", labels = c("Anual", "Mean 1985 - 2014")) +
+    blank_theme +
     theme(legend.position = c(0.8, 0.25), 
-          legend.title = element_text(colour="black", size=8, face="bold"), 
-          legend.text = element_text(colour="black", size=7.5))
-  
-ggarrange(cites_graph, change_graph,
-          ncol = 1, nrow = 2)
+          legend.title = element_text(colour="black", size=10, face="bold"), 
+          legend.text = element_text(colour="black", size=10),
+          text = element_text(size=13, family="LM Roman 10"))
 
+grid_cites <- grid.arrange(rbind(ggplotGrob(cites_graph), ggplotGrob(change_graph), size = "last"))
+```
+
+```{r, include=FALSE}
+ggsave(filename="EvolCites.png", plot=grid_cites)
+options(warn = 0)
 ```
 
 ## Story

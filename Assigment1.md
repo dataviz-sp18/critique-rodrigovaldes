@@ -3,14 +3,6 @@ Assigment 1
 Rodrigo Valdes Ortiz
 4/9/2018
 
-``` r
-# install.packages("cowplot")
-# install.packages("ggpubr")
-library(data.table)
-library(ggplot2)
-library(ggpubr)
-```
-
 Critique
 ========
 
@@ -63,31 +55,36 @@ ArtCites$MeanArt = mean(ArtCites$change_cites, na.rm=TRUE)
 ```
 
 ``` r
+options(warn = -1)
 # Generate the plot
 cites_graph = ggplot(ArtCites, aes(x=year))  + 
     geom_bar(aes(y=cites), stat="identity", fill="steelblue4", colour="steelblue4") +
-    labs(title="Evolution of Academic Citations", y = "Citations (millions)", x = " ", colour = "Variables") +
-    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2015)) +
-    theme(plot.title = element_text(hjust = 0.5))
+    # labs(title="Evolution of Academic Citations", y = "Citations (millions)", x = " ", colour = "Variables") +
+    # Delete title for thesis version, it will be in the latex.
+    labs(y = "Citations (millions)", x = " ", colour = "Variables") +
+    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2014), limits = c(1984, 2015)) +
+    blank_theme +
+    theme(plot.title = element_text(hjust = 0.5), text = element_text(size=13, family="LM Roman 10"))
 
 change_graph = ggplot(ArtCites, aes(x=year))  + 
     geom_line(aes(y=change_cites, color="indianred4")) +
     geom_line(aes(y=MeanArt, color="navyblue")) +
-    labs(y = "% Change Citations", x = "Year") +
+    # labs(y = "% Change Citations", x = "Year") +
+    # Delete year for thesis version, it is evident.
+    labs(y = "% Change Citations", x =" ") +
     scale_y_continuous(breaks=c(-2,0,2,4,6,8,10)) +
-    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2015)) +
+    scale_x_continuous(breaks=c(1985, 1990, 1995, 2000, 2005, 2010, 2014), limits = c(1984, 2015)) +
     scale_color_discrete(name = "Change", labels = c("Anual", "Mean 1985 - 2014")) +
+    blank_theme +
     theme(legend.position = c(0.8, 0.25), 
-          legend.title = element_text(colour="black", size=8, face="bold"), 
-          legend.text = element_text(colour="black", size=7.5))
-  
-ggarrange(cites_graph, change_graph,
-          ncol = 1, nrow = 2)
+          legend.title = element_text(colour="black", size=10, face="bold"), 
+          legend.text = element_text(colour="black", size=10),
+          text = element_text(size=13, family="LM Roman 10"))
+
+grid_cites <- grid.arrange(rbind(ggplotGrob(cites_graph), ggplotGrob(change_graph), size = "last"))
 ```
 
-    ## Warning: Removed 1 rows containing missing values (geom_path).
-
-![](Assigment1_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](Assigment1_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 Story
 -----
